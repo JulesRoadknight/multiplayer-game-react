@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import NewPlayerForm from './NewPlayerForm';
 import PlayerList from './PlayerList';
+import Game from './Game';
 
 function App() {
   const [players, setPlayers] = useState([]);
 
+  const [gameHasStarted, setGameHasStarted] = useState(false);
+
+  const startGame = () => {
+    setGameHasStarted(true);
+  }
+
   const addPlayer = (newPlayer) => {
-    setPlayers([newPlayer, ...players])
+    setPlayers([...players, newPlayer])
   };
 
   const deletePlayer = (playerToDelete) => {
@@ -36,13 +43,21 @@ function App() {
     }
   }
 
-  return (
-    <div>
-      <NewPlayerForm onSend={addPlayer} />
-      <PlayerList onSend={editOrDeletePlayer} data={players} />
-      <button data-testid='removeAllPlayers' onClick={deleteAll}>Delete All</button>
-    </div>
-  );
+  if(!gameHasStarted) {
+    return (
+      <div>
+        <NewPlayerForm onSend={addPlayer} />
+        <PlayerList onSend={editOrDeletePlayer} data={players} />
+        <button data-testid='removeAllPlayers' onClick={deleteAll}>Delete All</button>
+        <button data-testid="startGameButton" onClick={startGame}>Start Game</button>
+
+      </div>
+    );
+  } else {
+    return (
+      <Game data={players} />
+    )
+  }
 }
 
 export default App;
