@@ -12,7 +12,7 @@ describe('<NewPlayerForm />', () => {
 
     beforeEach(() => {
       sendHandler = jest.fn();
-      ({ getByTestId } = render(<NewPlayerForm onSend={sendHandler} />));
+      ({ getByTestId } = render(<NewPlayerForm onSend={sendHandler} data={'One'} />));
 
       fireEvent.change(
         getByTestId('playerName'),

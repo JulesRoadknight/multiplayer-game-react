@@ -55,7 +55,7 @@ function App() {
   if(!gameHasStarted) {
     return (
       <div style={gameStyle}>
-        <NewPlayerForm onSend={addPlayer} />
+        <NewPlayerForm onSend={addPlayer} data={players} />
         <PlayerList onSend={editOrDeletePlayer} data={players} />
         <button data-testid='removeAllPlayers' onClick={deleteAll}>Delete All</button>
         <button data-testid="startGameButton" onClick={startGame} disabled={players.length < 2}>Start Game</button>

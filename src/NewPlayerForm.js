@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const NewPlayerForm = ({ onSend }) => {
+const NewPlayerForm = ({ data, onSend }) => {
   const [inputText, setInputText] = useState('');
 
   const handleTextChange = (event) => {
@@ -11,6 +11,8 @@ const NewPlayerForm = ({ onSend }) => {
     onSend(inputText);
     setInputText('');
   }
+
+  let validInput = data.includes(inputText);
 
   return(
     <div>
@@ -23,6 +25,7 @@ const NewPlayerForm = ({ onSend }) => {
       <button
         data-testid="sendButton"
         onClick={handleSend}
+        disabled={validInput}
       >Send</button>
     </div>
   )
