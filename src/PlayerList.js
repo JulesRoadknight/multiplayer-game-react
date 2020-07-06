@@ -14,6 +14,7 @@ const PlayerList = ({ data, onSend }) => {
 
   return(
   <div>
+    <h3>Currently have {data.length} players:</h3>
     <ul>
       { data.map(player => 
         <div>

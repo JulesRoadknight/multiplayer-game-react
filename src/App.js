@@ -43,18 +43,29 @@ function App() {
     }
   }
 
+  const gameStyle = {
+    width: 500,
+    margin: "auto",
+    marginTop: 200,
+    backgroundColor: "#fafafa",
+    textAlign: "center",
+    padding: 30,
+  }
+
   if(!gameHasStarted) {
     return (
-      <div>
+      <div style={gameStyle}>
         <NewPlayerForm onSend={addPlayer} />
         <PlayerList onSend={editOrDeletePlayer} data={players} />
         <button data-testid='removeAllPlayers' onClick={deleteAll}>Delete All</button>
-        <button data-testid="startGameButton" onClick={startGame}>Start Game</button>
+        <button data-testid="startGameButton" onClick={startGame} disabled={players.length < 2}>Start Game</button>
       </div>
     );
   } else {
     return (
-      <Game data={players} />
+      <div style={gameStyle}>
+        <Game data={players} />
+      </div>
     )
   }
 }
