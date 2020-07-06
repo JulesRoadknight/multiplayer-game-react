@@ -8,9 +8,17 @@ describe('Renaming a player', () => {
     cy.get('[data-testid="sendButton"]')
       .click();
 
-    // cy.get('[data-testid="New Player"]')
-    //   .click();
+    cy.get('[data-testid="editNew Player"]')
+      .should('not.be.visible')
 
+    cy.get('[data-testid="displayNew Player"]')
+      .click();
+
+    cy.get('[data-testid="displayNew Player"]')
+      .should('not.be.visible')
+
+    cy.get('[data-testid="editNew Player"]')
+      .clear();
     cy.get('[data-testid="editNew Player"]')
       .type('Player Updated');
 
@@ -38,9 +46,11 @@ describe('Renaming a player', () => {
     cy.get('[data-testid="sendButton"]')
       .click();
 
-    // cy.get('[data-testid="New Player"]')
-    //   .click();
+    cy.get('[data-testid="displayNew Player"]')
+      .click();
 
+    cy.get('[data-testid="editPlayer 2"]')
+      .clear();
     cy.get('[data-testid="editPlayer 2"]')
       .type('New Player');
 

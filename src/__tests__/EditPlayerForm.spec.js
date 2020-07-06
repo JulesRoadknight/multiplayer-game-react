@@ -26,8 +26,9 @@ describe('<EditPlayerForm />', () => {
       fireEvent.click(getByTestId('updateNew Player'));
     });
 
-    it('clears the text field', () => {
-      expect(getByTestId('editNew Player').value).toEqual('');
+    it('updates the text field', () => {
+      expect(getByTestId('editNew Player'))
+      expect(getByTestId('editNew Player').value).toEqual('Player Updated');
     });
 
     it('calls the send handler', () => {

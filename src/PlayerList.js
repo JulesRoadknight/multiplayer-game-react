@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import EditPlayerForm from './EditPlayerForm'
 
 const PlayerList = ({ data, onSend }) => {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const toggleIsEditing = () => {
+    setIsEditing(!isEditing);
+  }
+
   const handleDeletePlayer = (player) => {
     onSend(player, true, false);
   }
@@ -12,12 +18,19 @@ const PlayerList = ({ data, onSend }) => {
       { data.map(player => 
         <div>
           <li data-testid={player} key={player}>
-            {player}
+            { isEditing === false &&
+              <p data-testid={'display' + player} onClick={toggleIsEditing}>{player}</p>
+            }
+            { isEditing === true &&
+              <>
+                <EditPlayerForm data-testid={'edit' + player} data={player} onSend={onSend} />
+                <button onClick={toggleIsEditing} >Cancel Edit</button>
+              </>
+            }
             <button data-testid={'remove' + player} onClick={() => handleDeletePlayer(player)} value={player}>Delete {player}</button>
-            <EditPlayerForm data-testid={'edit' + player} data={player} onSend={onSend} />
           </li>
         </div>
-        ) }
+        )}
     </ul>
   </div>
   )

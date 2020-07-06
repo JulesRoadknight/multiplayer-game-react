@@ -11,6 +11,7 @@ const Game = ({ data }) => {
     setPlayerState(prevState => {
       const currentIndex = prevState.index;
       const futureIndex = currentIndex === (data.length - 1) ? 0 : currentIndex + 1;
+
       return {
         currentPlayer: data[futureIndex],
         index: futureIndex

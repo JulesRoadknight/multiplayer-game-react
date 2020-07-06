@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const EditPlayerForm = ({ data, onSend }) => {
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState(data);
 
   const handleTextChange = (event) => {
     setInputText(event.target.value)
@@ -9,7 +9,6 @@ const EditPlayerForm = ({ data, onSend }) => {
 
   const handleSend = () => {
     onSend(data, false, true, inputText);
-    setInputText('');
   }
 
   const formStyle = {
@@ -27,7 +26,7 @@ const EditPlayerForm = ({ data, onSend }) => {
       <button
         data-testid={"update" + data}
         onClick={handleSend}
-      >Send</button>
+      >Update</button>
     </div>
   )
 }
